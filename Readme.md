@@ -1,44 +1,187 @@
-# Automated Artificial Intelligence Voice Assistant (Jarvis)
+# Automated Artificial Intelligence Voice Assistant — Jarvis
 
-[![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)]()
-[![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)]()
+A modular Python-based **Daily-Needs Voice Assistant / Agent** that listens to your voice, understands commands, and automates tasks like searching the web, sending WhatsApp messages, reading news, controlling the keyboard, calculating numbers, translating text, playing music, and more.
 
-**Automated Daily-Needs AI Voice Assistant / Agent** — a modular Python voice assistant (Jarvis) for automating daily tasks: answering questions, playing media, running local commands, searching the web, sending emails, and more.
-
-> Short: A modular voice agent that listens, processes commands, and performs actions using Python scripts and modules.
+> Designed with a clean “Brain / Body / Features” architecture so new features can be added easily.
 
 ---
 
-## Table of contents
+## ✨ Features
 
-- [Features](#features)  
-- [Repository structure](#repository-structure)  
-- [Prerequisites](#prerequisites)  
-- [Installation](#installation)  
-- [Configuration](#configuration)  
-- [Usage](#usage)  
-- [How it works (high level)](#how-it-works-high-level)  
-- [Troubleshooting & Tips](#troubleshooting--tips)  
-- [Contributing](#contributing)  
-- [Roadmap / Improvements](#roadmap--improvements)  
-- [License](#license)
+Jarvis currently supports (based on the implemented modules):
 
----
+- 👋 Greetings & introduction (`INTRO`, `GreetMe`)
+- 🎧 Listen & speak via microphone + TTS (`Body.Listen`, `Body.Speak`)
+- 🌐 Web search & quick answers (`SearchNow`)
+- 📰 Read latest news (`NewsRead`)
+- 🎵 Play music (`Music`)
+- 🧮 Calculate numbers (`Calculatenumbers`)
+- ⌨️ Keyboard automation / typing (`keyboard`)
+- 📱 WhatsApp messaging (`Whatsapp`)
+- 🗣️ Text translation (`Translator`)
+- 📚 Dictionary / app lookup (`Dictapp`)
+- 🕹️ Built-in mini-game (`game`)
+- 🎯 Focus / productivity graph (`FocusGraph`)
+- ⚡ System & automation helpers (pyautogui actions, reminders, etc.)
 
-## Features
-
-> (Derived from folder names and main script — tune these to match your implementation.)
-
-- Wake-word / voice-driven command interface  
-- Text-to-speech replies and audio prompts (`data.mp3` present).  
-- Modular design with separation of concerns (Brain / Body / Features / Data / DataBase).  
-- Extensible: add new action handlers in `Features` and logic in `Brain`.  
-- Local audio playback and recording support.  
-- Utilities for searching, playing media, scheduling, and interacting with local resources.
-
-(Observed repository structure used to infer above.) :contentReference[oaicite:1]{index=1}
+The assistant coordinates everything through `Brain.AiBrain.ReplyBrain`.
 
 ---
 
-## Repository structure
+## 🗂️ Project Structure
 
+Automated-Artificial-Intelligence-Voice-Assistant/
+├─ Brain/ # Core intent logic & response engine
+├─ Body/ # Input (Listen) & Output (Speak) pipeline
+├─ Features/ # Feature modules (search, music, news, etc.)
+├─ Contents/ # Static / UI / resource content
+├─ Data/ # Assets, audio, temp data
+├─ DataBase/ # Persistent state / user data
+├─ Jarvis_main.py # MAIN entrypoint for the assistant
+└─ data.mp3 # Sample audio asset
+
+yaml
+Copy code
+
+---
+
+## 🧩 Requirements
+
+These packages are imported directly in `Jarvis_main.py`:
+
+numpy
+pyautogui
+pywhatkit
+webbrowser
+pygame
+plyer
+requests
+bs4
+speedtest
+
+css
+Copy code
+
+Likely runtime dependencies from `Body.Listen` / `Body.Speak` (commonly used in voice assistants):
+
+SpeechRecognition
+pyttsx3
+pyaudio
+
+pgsql
+Copy code
+
+> If you already have a `requirements.txt`, keep that as the source of truth.  
+> Otherwise, you can generate one after install using `pip freeze > requirements.txt`.
+
+---
+
+## 🚀 Installation
+
+1️⃣ **Clone the repository**
+
+```bash
+git clone https://github.com/HarshKulhade/Automated-Artificial-Intelligence-Voice-Assistant.git
+cd Automated-Artificial-Intelligence-Voice-Assistant
+2️⃣ Create a virtual environment (recommended)
+
+bash
+Copy code
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
+3️⃣ Install dependencies
+
+bash
+Copy code
+pip install -r requirements.txt
+# or, if not present:
+pip install numpy pyautogui pywhatkit webbrowser pygame plyer requests bs4 speedtest SpeechRecognition pyttsx3 pyaudio
+On some systems you may need system packages for pyaudio / portaudio.
+
+⚙️ Configuration
+Some features may require additional setup:
+
+WhatsApp automation → ensure WhatsApp Web is logged in
+
+News / APIs → add keys if you enable external sources
+
+Microphone selection → configure inside Body/Listen.py
+
+TTS engine or voice settings → configured in Body/Speak.py
+
+If you use API keys, prefer storing them in environment variables or .env:
+
+bash
+Copy code
+export NEWS_API_KEY="..."
+▶️ Usage
+Run the assistant:
+
+bash
+Copy code
+python Jarvis_main.py
+Typical workflow:
+
+Jarvis listens for your voice
+
+You give a command (examples):
+
+“Search about artificial intelligence”
+
+“Play music”
+
+“Send WhatsApp message”
+
+“Read today’s news”
+
+“Translate this sentence”
+
+Jarvis processes the intent and executes the feature module
+
+🧠 How It Works
+Body → handles listening and speaking
+
+Brain → interprets the text and chooses the correct action
+
+Features → each capability is isolated as its own module
+
+Jarvis_main.py → orchestrator / main event loop
+
+This separation makes the project easy to extend — just add a new module in Features/ and connect it in Brain.
+
+🛠️ Troubleshooting
+❌ “No microphone / audio device”
+Install pyaudio correctly and give mic permissions.
+
+❌ Module import errors
+Re-install dependencies or check requirements.txt.
+
+❌ No speech output
+Test pyttsx3 with a short script and verify speakers.
+
+❌ WhatsApp automation not working
+Keep browser open and logged into WhatsApp Web.
+
+🗺️ Roadmap / Ideas
+Add wake-word detection (Hey Jarvis)
+
+Add conversation memory / context
+
+Package as desktop app (.exe / AppImage)
+
+Add GUI dashboard
+
+Add plug-in system for new skills
+
+🤝 Contributing
+Contributions are welcome!
+Feel free to open issues or submit PRs for new features or improvements.
+
+📄 License
+Add your preferred license in a LICENSE file (MIT recommended for open projects).
+
+🙌 Credits
+Built by Harsh Kulhade — a modular and extensible personal AI assistant project.
