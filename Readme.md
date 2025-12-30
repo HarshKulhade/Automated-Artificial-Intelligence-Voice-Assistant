@@ -40,9 +40,6 @@ Automated-Artificial-Intelligence-Voice-Assistant/
 ├─ Jarvis_main.py # MAIN entrypoint for the assistant
 └─ data.mp3 # Sample audio asset
 
-yaml
-Copy code
-
 ---
 
 ## 🧩 Requirements
@@ -59,8 +56,6 @@ requests
 bs4
 speedtest
 
-css
-Copy code
 
 Likely runtime dependencies from `Body.Listen` / `Body.Speak` (commonly used in voice assistants):
 
@@ -68,8 +63,6 @@ SpeechRecognition
 pyttsx3
 pyaudio
 
-pgsql
-Copy code
 
 > If you already have a `requirements.txt`, keep that as the source of truth.  
 > Otherwise, you can generate one after install using `pip freeze > requirements.txt`.
@@ -94,8 +87,6 @@ venv\Scripts\activate
 source venv/bin/activate
 3️⃣ Install dependencies
 
-bash
-Copy code
 pip install -r requirements.txt
 # or, if not present:
 pip install numpy pyautogui pywhatkit webbrowser pygame plyer requests bs4 speedtest SpeechRecognition pyttsx3 pyaudio
@@ -114,14 +105,10 @@ TTS engine or voice settings → configured in Body/Speak.py
 
 If you use API keys, prefer storing them in environment variables or .env:
 
-bash
-Copy code
 export NEWS_API_KEY="..."
 ▶️ Usage
 Run the assistant:
 
-bash
-Copy code
 python Jarvis_main.py
 Typical workflow:
 
